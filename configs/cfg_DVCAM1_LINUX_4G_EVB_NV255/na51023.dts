@@ -1,0 +1,21 @@
+/*
+ * Novatek Ltd. NA51023 BSP part of dts
+ */
+
+/dts-v1/;
+#include "nvt-na51023-evb-default.dtsi"
+
+/ {
+	soc {
+		mmc1: mmc@c0500000 {
+			compatible = "nvt,nvt_mmc2";
+			reg = <0xc0500000 0x200>;
+			interrupts = <31>;
+			max-frequency = <48000000>;
+			voltage-switch = <0>;
+			max-voltage = <3300>;
+			bus-width = <4>;
+			cd_gpio = <0 GPIO_FALLING_EDGE GPIO_INTERRUPT>;
+		};
+        };
+};
