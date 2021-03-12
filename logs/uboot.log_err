@@ -1,4 +1,3 @@
-fatal: Not a git repository (or any of the parent directories): .git
 board/novatek/nvt-na51023/na51023_utils.c: In function ‘nvt_flash_mtdpart_config’:
 board/novatek/nvt-na51023/na51023_utils.c:317:27: warning: variable ‘pst_part_num’ set but not used [-Wunused-but-set-variable]
   uint32_t i, j, part_num, pst_part_num;

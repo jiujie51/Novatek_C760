@@ -543,7 +543,7 @@ INT32 SetupExe_OnSysReset(VControl *pCtrl, UINT32 paramNum, UINT32 *paramArray)
 
 	Reset_MenuInfo();
 	//save to nand
-	Save_MenuInfo();
+	//Save_MenuInfo();
 #else
 	Ux_PostEvent(NVTEVT_BACKGROUND_DONE, 1, NVTEVT_BKW_DUMMY_WAIT);
 #endif

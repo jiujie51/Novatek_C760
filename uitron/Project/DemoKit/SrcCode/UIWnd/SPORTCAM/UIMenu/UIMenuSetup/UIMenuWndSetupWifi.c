@@ -161,6 +161,7 @@ INT32 UIMenuWndSetupWifi_Menu_OnKeyEnter(VControl *pCtrl, UINT32 paramNum, UINT3
 	    {
 	        if (UI_GetData(FL_WIFI_LINK) != WIFI_LINK_OK)
 	        {
+	            UI_SetData(FL_WIFI_LINK,WIFI_LINK_OK);
 	            UI_SetData(FL_WIFI,WIFI_ON);
 	            BKG_PostEvent(NVTEVT_BKW_WIFI_ON);
 	        }

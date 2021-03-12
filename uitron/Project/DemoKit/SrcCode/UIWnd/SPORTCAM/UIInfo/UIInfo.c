@@ -694,6 +694,7 @@ void SysResetFlag(void)
 	SysSetFlag(FL_ANTISHAKE,            DEFAULT_ANTISHAKING);
 	SysSetFlag(FL_RSC,                  DEFAULT_RSC);
 	SysSetFlag(FL_WDR,                  DEFAULT_WDR);
+	SysSetFlag(FL_MOVIE_WDR,			DEFAULT_WDR);
 	SysSetFlag(FL_DUAL_CAM_MENU,        DEFAULT_DUAL_CAM);
 	SysSetFlag(FL_QUICK_REVIEW,         DEFAULT_QUICK_REVIEW);
 	SysSetFlag(FL_DATE_STAMP,           DEFAULT_DATE_STAMP);
@@ -834,7 +835,8 @@ void SysExeMenuSettingFuncs(void)
 	Ux_SendEvent(&CustomMovieObjCtrl, NVTEVT_EXE_MOVIEQUALITY,   1,      SysGetFlag(FL_MOVIE_QUALITY));
 	Ux_SendEvent(&CustomMovieObjCtrl, NVTEVT_EXE_MOVIECOLOR,     1,      SysGetFlag(FL_MOVIE_COLOR));
 	Ux_SendEvent(&CustomMovieObjCtrl, NVTEVT_EXE_DUALCAM,        1,      SysGetFlag(FL_DUAL_CAM));
-
+	Ux_SendEvent(&CustomMovieObjCtrl, NVTEVT_EXE_MOVIESIZE,		 1, 	 SysGetFlag(FL_MOVIE_SIZE_MENU));//0309
+	Ux_SendEvent(&CustomMovieObjCtrl, NVTEVT_EXE_MOVIE_WDR, 	 1,  	 SysGetFlag(FL_MOVIE_WDR));//0309
 	/* Cyclic recording/record with mute or sound/DateImptint/Motion Detect */
 	Ux_SendEvent(&CustomMovieObjCtrl,   NVTEVT_EXE_CYCLIC_REC,          1,  SysGetFlag(FL_MOVIE_CYCLIC_REC));
 	Ux_SendEvent(&CustomMovieObjCtrl,   NVTEVT_EXE_MOTION_DET,          1,  SysGetFlag(FL_MOVIE_MOTION_DET));
@@ -863,7 +865,7 @@ void SysExeMenuSettingFuncs(void)
 	Ux_SendEvent(&UISetupObjCtrl, NVTEVT_EXE_DISPLAY,       1,  SysGetFlag(FL_LCD_DISPLAY));
 	Ux_SendEvent(&UISetupObjCtrl, NVTEVT_EXE_FREQ,          1,  SysGetFlag(FL_FREQUENCY));
 	Ux_SendEvent(&UISetupObjCtrl, NVTEVT_EXE_DATEFORMAT,    1,  SysGetFlag(FL_DATE_FORMAT));
-
+	Ux_SendEvent(&UISetupObjCtrl, NVTEVT_EXE_MOVIE_TIMELAPSESET, 1, SysGetFlag(FL_movie_timelapse_set));//0309
 #if (WIFI_FUNC==ENABLE)
 	/*--- Wi-Fi ---*/
 	if (UI_GetData(FL_NetWorkMode) == NET_AP_MODE || UI_GetData(FL_NetWorkMode) == NET_WPS_AP_PBC_MODE) {
@@ -874,6 +876,13 @@ void SysExeMenuSettingFuncs(void)
 		if (currentInfo.strPASSPHRASE[0] != 0) { // Load PASSPHARSE if existed.
 			Ux_SendEvent(&UISetupObjCtrl, NVTEVT_EXE_WIFI_SET_PASSPHRASE, 1, currentInfo.strPASSPHRASE);
 		}
+		if (UI_GetData(FL_WIFI) == WIFI_ON)
+		{
+			Ux_SendEvent(0, NVTEVT_EXE_WIFI_START, 0);
+ 		}else if(UI_GetData(FL_WIFI)==WIFI_OFF)
+        {
+			Ux_SendEvent(0, NVTEVT_EXE_WIFI_STOP, 0);
+        }
 	} else if (UI_GetData(FL_NetWorkMode) == NET_STATION_MODE) {
 		char szTemp[NVT_WSC_MAX_SSID_LEN + NVT_MAX_WEP_KEY_LEN] = {0};
 

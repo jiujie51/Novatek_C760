@@ -4,9 +4,9 @@ make[2]: Entering directory '/home/zjf/share/work/C760_NF/NVT_NA51023_BSP/NA5102
 Checking eCos - eCosKit release target ...
 make[3]: Entering directory '/home/zjf/share/work/C760_NF/NVT_NA51023_BSP/NA51023_BSP/ecos-kit/Project/eCosKit'
 Assembling CodeInfo.s
-Compiling BinInfo.c
 Compiling ecos_main.c
 Compiling KerExcept.c
+Compiling BinInfo.c
 Compiling init_ipc.c
 Compiling init_cmd.c
 Compiling cmd_usage.c
